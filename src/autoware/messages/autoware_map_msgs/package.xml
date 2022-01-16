@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>autoware_map_msgs</name>
+  <version>1.13.0</version>
+  <description>Includes messages to handle each class in Autoware Map Format</description>
+  <maintainer email="ryohsuke.mitsudome@tier4.jp">mitsudome-r</maintainer>
+  <license>Apache 2</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>message_generation</build_depend>
+
+  <depend>std_msgs</depend>
+
+  <exec_depend>message_runtime</exec_depend>
+</package>

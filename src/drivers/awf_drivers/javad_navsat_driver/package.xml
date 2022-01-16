@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>javad_navsat_driver</name>
+  <version>1.12.0</version>
+  <description>
+    Package to parse NMEA strings and publish a very simple GPS message. Does not require the GPSD deamon.
+  </description>
+  <maintainer email="h_ohta@ertl.jp">Hiroki Ohta</maintainer>
+  <author>Hiroki Ohta</author>
+  <license>Apache 2</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roslint</build_depend>
+
+  <depend>geometry_msgs</depend>
+  <depend>nmea_msgs</depend>
+  <depend>python-serial</depend>
+  <depend>rospy</depend>
+  <depend>sensor_msgs</depend>
+
+  <export>
+    <architecture_independent/>
+  </export>
+</package>

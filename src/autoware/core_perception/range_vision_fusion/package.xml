@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>range_vision_fusion</name>
+  <version>1.12.0</version>
+  <description>Range-Vision fusion node</description>
+  <maintainer email="abraham.monrroy@tier4.jp">Abraham Monrroy</maintainer>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>autoware_msgs</depend>
+  <depend>cv_bridge</depend>
+  <depend>eigen_conversions</depend>
+  <depend>image_geometry</depend>
+  <depend>image_transport</depend>
+  <depend>jsk_recognition_utils</depend>
+  <depend>jsk_topic_tools</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf</depend>
+  <depend>tf_conversions</depend>
+  <depend>yaml-cpp</depend>
+</package>

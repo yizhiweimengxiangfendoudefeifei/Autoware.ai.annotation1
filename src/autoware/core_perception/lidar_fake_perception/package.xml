@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>lidar_fake_perception</name>
+  <version>1.12.0</version>
+  <description>The lidar_fake_percetion package</description>
+  <maintainer email="aohsato@gmail.com">Akihito Ohsato</maintainer>
+  <author email="aohsato@gmail.com">Akihito Ohsato</author>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>autoware_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>pcl_ros</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf</depend>
+  <depend>tf_conversions</depend>
+</package>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>kitti_player</name>
+  <version>1.12.0</version>
+  <description>
+      This node aims to play the kitti data into ROS. This repository is a
+      catkin upgrade from the original work by Francesco Sacchi
+      http://irawiki.disco.unimib.it/irawiki/index.php/Kitti_Player
+  </description>
+  <maintainer email="ballardini@disco.unimib.it">Augusto Luis Ballardini</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>roscpp</depend>
+  <depend>tf</depend>
+  <depend>tf2</depend>
+  <depend>std_msgs</depend>
+  <depend>pcl_ros</depend>
+  <depend>geometry_msgs</depend>
+  <depend>stereo_msgs</depend>
+  <depend>cv_bridge</depend>
+  <depend>message_filters</depend>
+  <depend>dynamic_reconfigure</depend>
+  <depend>image_transport</depend>
+  <depend>qtbase5-dev</depend>
+</package>

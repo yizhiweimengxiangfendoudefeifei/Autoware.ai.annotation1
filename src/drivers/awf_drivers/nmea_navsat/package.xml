@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>nmea_navsat</name>
+  <version>1.12.0</version>
+  <description>The nmea_navsat package</description>
+  <maintainer email="kondoh@axe-inc.co.jp">Masao KONDOH</maintainer>
+  <license>Apache 2</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>nmea_navsat_driver</exec_depend>
+</package>

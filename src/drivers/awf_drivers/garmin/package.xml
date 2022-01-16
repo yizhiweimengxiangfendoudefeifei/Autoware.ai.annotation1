@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>garmin</name>
+  <version>1.12.0</version>
+  <description>The Garmin GPS driver</description>
+  <maintainer email="dillenberger@uni-koblenz.de">Denis Dillenberger</maintainer>
+  <maintainer email="yuki@ertl.jp">Yuki Kitsukawa</maintainer>
+  <author email="yuki@ertl.jp">Yuki Kitsukawa</author> -->
+  <license>BSD</license>
+  
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <depend>nmea_msgs</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+</package>

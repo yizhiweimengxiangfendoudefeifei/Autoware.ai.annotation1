@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>vision_ssd_detect</name>
+  <version>1.12.0</version>
+  <description>The vision_ssd_detect package</description>
+  <maintainer email="abrahammonrroy@yahoo.com">amc</maintainer>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>autoware_config_msgs</depend>
+  <depend>autoware_msgs</depend>
+  <depend>cv_bridge</depend>
+  <depend>geometry_msgs</depend>
+  <depend>gnss</depend>
+  <depend>image_transport</depend>
+  <depend>libopencv-dev</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>tf</depend>
+</package>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>freespace_planner</name>
+  <version>1.12.0</version>
+  <description>The freespace_planner package</description>
+  <maintainer email="aohsato@gmail.com">Akihito OHSATO</maintainer>
+  <author email="aohsato@gmail.com">Akihito OHSATO</author>
+  <author email="antm678@ertl.jp">Tomohito ANDO</author>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>astar_search</depend>
+  <depend>autoware_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>roscpp</depend>
+  <depend>tf</depend>
+  <depend>visualization_msgs</depend>
+</package>

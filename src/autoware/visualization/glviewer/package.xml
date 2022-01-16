@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>glviewer</name>
+  <version>1.12.0</version>
+  <description>The glviewer package</description>
+  <maintainer email="syoshida@axe.bz">Syohei YOSHIDA</maintainer>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>libqt5-opengl-dev</depend>
+  <depend>qtbase5-dev</depend>
+  <depend>roscpp</depend>
+
+  <exec_depend>libqt5-core</exec_depend>
+  <exec_depend>libqt5-gui</exec_depend>
+  <exec_depend>libqt5-opengl</exec_depend>
+  <exec_depend>libqt5-widgets</exec_depend>
+</package>

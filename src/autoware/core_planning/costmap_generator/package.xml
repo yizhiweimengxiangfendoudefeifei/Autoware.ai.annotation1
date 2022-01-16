@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>costmap_generator</name>
+  <version>1.12.0</version>
+  <description>The costmap_generator package</description>
+  <maintainer email="cirpue49@yahoo.co.jp">ando</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>autoware_msgs</depend>
+  <depend>grid_map_ros</depend>
+  <depend>object_map</depend>
+  <depend>pcl_ros</depend>
+  <depend>roscpp</depend>
+  <depend>tf</depend>
+  <depend>vector_map</depend>
+  <depend>lanelet2_extension</depend>
+</package>

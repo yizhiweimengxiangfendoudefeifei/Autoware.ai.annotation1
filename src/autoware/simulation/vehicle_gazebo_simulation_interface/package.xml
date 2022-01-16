@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>vehicle_gazebo_simulation_interface</name>
+  <version>1.12.0</version>
+  <description>The vehicle_gazebo_simulation_interface package</description>
+  <maintainer email="yukky.saito@gmail.com">yukihiro saito</maintainer>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>autoware_msgs</depend>
+  <depend>gazebo_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+</package>

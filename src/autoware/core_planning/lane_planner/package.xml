@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>lane_planner</name>
+  <version>1.12.0</version>
+  <description>The lane_planner package</description>
+  <maintainer email="tomo@axe-inc.co.jp">Tomomi HORII</maintainer>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>autoware_config_msgs</depend>
+  <depend>autoware_msgs</depend>
+  <depend>gnss</depend>
+  <depend>lanelet2_extension</depend>
+  <depend>libwaypoint_follower</depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>tablet_socket_msgs</depend>
+  <depend>vector_map</depend>
+
+  <test_depend>rostest</test_depend>
+  <test_depend>rosunit</test_depend>
+</package>

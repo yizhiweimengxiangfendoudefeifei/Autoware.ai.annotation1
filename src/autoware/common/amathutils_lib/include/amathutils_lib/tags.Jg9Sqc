@@ -1,0 +1,102 @@
+AMATHUTILS_LIB_AMATHUTILS_HPP	amathutils.hpp	18;"	d
+amathutils	amathutils.hpp	/^namespace amathutils$/;"	n
+G_MPSS	amathutils.hpp	33;"	d
+rad2deg	amathutils.hpp	/^inline double rad2deg(double _angle)$/;"	f	namespace:amathutils
+deg2rad	amathutils.hpp	/^inline double deg2rad(double _angle)$/;"	f	namespace:amathutils
+mps2kmph	amathutils.hpp	/^inline double mps2kmph(double _mpsval)$/;"	f	namespace:amathutils
+kmph2mps	amathutils.hpp	/^inline double kmph2mps(double _kmphval)$/;"	f	namespace:amathutils
+getGravityAcceleration	amathutils.hpp	/^inline double getGravityAcceleration(double _acceleration_mpss)$/;"	f	namespace:amathutils
+getAcceleration	amathutils.hpp	/^inline double getAcceleration(double _v0, double _v, double _x)$/;"	f	namespace:amathutils
+getTimefromAcceleration	amathutils.hpp	/^inline double getTimefromAcceleration(double _v0, double _v, double _a)$/;"	f	namespace:amathutils
+getIntersect	amathutils.hpp	/^bool getIntersect(double x1, double y1, double x2, double y2, double x3,$/;"	p	namespace:amathutils
+getIntersect	amathutils.hpp	/^bool getIntersect(geometry_msgs::Point p1, geometry_msgs::Point p2, geometry_msgs::Point p3,$/;"	p	namespace:amathutils
+getNearPtOnLine	amathutils.hpp	/^geometry_msgs::Point getNearPtOnLine(const geometry_msgs::Point &_p, const geometry_msgs::Point &_a,$/;"	p	namespace:amathutils
+find_distance	amathutils.hpp	/^double find_distance(const geometry_msgs::Point &_from, const geometry_msgs::Point &_to);$/;"	p	namespace:amathutils
+find_distance	amathutils.hpp	/^double find_distance(const geometry_msgs::Pose &_from, const geometry_msgs::Pose &_to);$/;"	p	namespace:amathutils
+find_angle	amathutils.hpp	/^double find_angle(const geometry_msgs::Point &_from, const geometry_msgs::Point &_to);$/;"	p	namespace:amathutils
+isIntersectLine	amathutils.hpp	/^bool isIntersectLine(const geometry_msgs::Point &_l1_p1, const geometry_msgs::Point &_l1_p2,$/;"	p	namespace:amathutils
+isPointLeftFromLine	amathutils.hpp	/^int isPointLeftFromLine(const geometry_msgs::Point &_target, const geometry_msgs::Point &_line_p1,$/;"	p	namespace:amathutils
+distanceFromSegment	amathutils.hpp	/^double distanceFromSegment(const geometry_msgs::Point &_l1, const geometry_msgs::Point &_l2,$/;"	p	namespace:amathutils
+getPoseYawAngle	amathutils.hpp	/^double getPoseYawAngle(const geometry_msgs::Pose &_pose);$/;"	p	namespace:amathutils
+getQuaternionFromYaw	amathutils.hpp	/^geometry_msgs::Quaternion getQuaternionFromYaw(const double &_yaw);$/;"	p	namespace:amathutils
+normalizeRadian	amathutils.hpp	/^double normalizeRadian(const double _angle);$/;"	p	namespace:amathutils
+calcPosesAngleDiffRaw	amathutils.hpp	/^double calcPosesAngleDiffRaw(const geometry_msgs::Pose &p_from, const geometry_msgs::Pose &_p_to);$/;"	p	namespace:amathutils
+calcPosesAngleDiffDeg	amathutils.hpp	/^double calcPosesAngleDiffDeg(const geometry_msgs::Pose &_p_from, const geometry_msgs::Pose &_p_to);$/;"	p	namespace:amathutils
+calcPosesAngleDiffRad	amathutils.hpp	/^double calcPosesAngleDiffRad(const geometry_msgs::Pose &_p_from, const geometry_msgs::Pose &_p_to);$/;"	p	namespace:amathutils
+AMATHUTILS_LIB_BUTTERWORTH_FILTER_HPP	butterworth_filter.hpp	20;"	d
+Order_Cutoff	butterworth_filter.hpp	/^struct Order_Cutoff$/;"	s
+N	butterworth_filter.hpp	/^  int N;$/;"	m	struct:Order_Cutoff
+Wc	butterworth_filter.hpp	/^  double Wc;$/;"	m	struct:Order_Cutoff
+DifferenceAnBn	butterworth_filter.hpp	/^struct DifferenceAnBn$/;"	s
+An	butterworth_filter.hpp	/^  std::vector<double> An;$/;"	m	struct:DifferenceAnBn
+Bn	butterworth_filter.hpp	/^  std::vector<double> Bn;$/;"	m	struct:DifferenceAnBn
+ButterworthFilter	butterworth_filter.hpp	/^class ButterworthFilter$/;"	c
+PrintFilter_Specs	butterworth_filter.hpp	/^  void PrintFilter_Specs();$/;"	p	class:ButterworthFilter
+PrintFilter_ContinuousTimeRoots	butterworth_filter.hpp	/^  void PrintFilter_ContinuousTimeRoots();$/;"	p	class:ButterworthFilter
+PrintContinuousTimeTF	butterworth_filter.hpp	/^  void PrintContinuousTimeTF();$/;"	p	class:ButterworthFilter
+PrintDiscreteTimeTF	butterworth_filter.hpp	/^  void PrintDiscreteTimeTF();$/;"	p	class:ButterworthFilter
+Buttord	butterworth_filter.hpp	/^  void Buttord(double Wp, double Ws, double Ap, double As);$/;"	p	class:ButterworthFilter
+initializeForFiltering	butterworth_filter.hpp	/^  void initializeForFiltering();$/;"	p	class:ButterworthFilter
+setCuttoffFrequency	butterworth_filter.hpp	/^  setCuttoffFrequency(double Wc);  \/\/ Wc is the cut-off frequency in [rad\/sec]$/;"	p	class:ButterworthFilter
+setCuttoffFrequency	butterworth_filter.hpp	/^  void setCuttoffFrequency(double fc, double fs);$/;"	p	class:ButterworthFilter
+setOrder	butterworth_filter.hpp	/^  void setOrder(int N);$/;"	p	class:ButterworthFilter
+getOrderCutOff	butterworth_filter.hpp	/^  Order_Cutoff getOrderCutOff();$/;"	p	class:ButterworthFilter
+getAnBn	butterworth_filter.hpp	/^  DifferenceAnBn getAnBn();$/;"	p	class:ButterworthFilter
+getAn	butterworth_filter.hpp	/^  std::vector<double> getAn();$/;"	p	class:ButterworthFilter
+getBn	butterworth_filter.hpp	/^  std::vector<double> getBn();$/;"	p	class:ButterworthFilter
+computeContinuousTimeTF	butterworth_filter.hpp	/^  void computeContinuousTimeTF(bool sampling_freqency = false);$/;"	p	class:ButterworthFilter
+computeDiscreteTimeTF	butterworth_filter.hpp	/^  void computeDiscreteTimeTF(bool sampling_freqency = false);$/;"	p	class:ButterworthFilter
+filter	butterworth_filter.hpp	/^  double filter(const double &u);$/;"	p	class:ButterworthFilter
+filtVector	butterworth_filter.hpp	/^  void filtVector(const std::vector<double> &t, std::vector<double> &u,$/;"	p	class:ButterworthFilter
+filtFiltVector	butterworth_filter.hpp	/^  void filtFiltVector(const std::vector<double> &t, std::vector<double> &u,$/;"	p	class:ButterworthFilter
+mOrder	butterworth_filter.hpp	/^  int mOrder = 0;                  \/\/ filter order$/;"	m	class:ButterworthFilter
+mCutoff_Frequency	butterworth_filter.hpp	/^  double mCutoff_Frequency = 0.0;  \/\/ filter cut-off frequency [rad\/sec]$/;"	m	class:ButterworthFilter
+prewarp	butterworth_filter.hpp	/^  bool prewarp = false;$/;"	m	class:ButterworthFilter
+mSampling_Frequency	butterworth_filter.hpp	/^  double mSampling_Frequency = 1.0;$/;"	m	class:ButterworthFilter
+Td	butterworth_filter.hpp	/^  const double Td = 2.0;$/;"	m	class:ButterworthFilter
+mContinuousTimeNumerator	butterworth_filter.hpp	/^  double mContinuousTimeNumerator = 0.0;$/;"	m	class:ButterworthFilter
+polynomialFromRoots	butterworth_filter.hpp	/^  polynomialFromRoots(std::vector<std::complex<double>> &roots);$/;"	p	class:ButterworthFilter
+computePhaseAngles	butterworth_filter.hpp	/^  void computePhaseAngles();$/;"	p	class:ButterworthFilter
+computeContinuousTimeRoots	butterworth_filter.hpp	/^  void computeContinuousTimeRoots(bool use_sampling_freqency = false);$/;"	p	class:ButterworthFilter
+u_unfiltered	butterworth_filter.hpp	/^  std::vector<double> u_unfiltered;$/;"	m	class:ButterworthFilter
+u_filtered	butterworth_filter.hpp	/^  std::vector<double> u_filtered;$/;"	m	class:ButterworthFilter
+AMATHUTILS_LIB_KALMAN_FILTER_HPP	kalman_filter.hpp	18;"	d
+KalmanFilter	kalman_filter.hpp	/^class KalmanFilter$/;"	c
+KalmanFilter	kalman_filter.hpp	/^  KalmanFilter();$/;"	p	class:KalmanFilter
+KalmanFilter	kalman_filter.hpp	/^  KalmanFilter(const Eigen::MatrixXd &x, const Eigen::MatrixXd &A,$/;"	p	class:KalmanFilter
+~KalmanFilter	kalman_filter.hpp	/^  ~KalmanFilter();$/;"	p	class:KalmanFilter
+init	kalman_filter.hpp	/^  bool init(const Eigen::MatrixXd &x, const Eigen::MatrixXd &A,$/;"	p	class:KalmanFilter
+init	kalman_filter.hpp	/^  bool init(const Eigen::MatrixXd &x, const Eigen::MatrixXd &P0);$/;"	p	class:KalmanFilter
+setA	kalman_filter.hpp	/^  void setA(const Eigen::MatrixXd &A);$/;"	p	class:KalmanFilter
+setB	kalman_filter.hpp	/^  void setB(const Eigen::MatrixXd &B);$/;"	p	class:KalmanFilter
+setC	kalman_filter.hpp	/^  void setC(const Eigen::MatrixXd &C);$/;"	p	class:KalmanFilter
+setQ	kalman_filter.hpp	/^  void setQ(const Eigen::MatrixXd &Q);$/;"	p	class:KalmanFilter
+setR	kalman_filter.hpp	/^  void setR(const Eigen::MatrixXd &R);$/;"	p	class:KalmanFilter
+getX	kalman_filter.hpp	/^  void getX(Eigen::MatrixXd &x);$/;"	p	class:KalmanFilter
+getP	kalman_filter.hpp	/^  void getP(Eigen::MatrixXd &P);$/;"	p	class:KalmanFilter
+getXelement	kalman_filter.hpp	/^  double getXelement(unsigned int i);$/;"	p	class:KalmanFilter
+predict	kalman_filter.hpp	/^  bool predict(const Eigen::MatrixXd &u, const Eigen::MatrixXd &A,$/;"	p	class:KalmanFilter
+predict	kalman_filter.hpp	/^  bool predict(const Eigen::MatrixXd &x_next, const Eigen::MatrixXd &A,$/;"	p	class:KalmanFilter
+predict	kalman_filter.hpp	/^  bool predict(const Eigen::MatrixXd &x_next, const Eigen::MatrixXd &A);$/;"	p	class:KalmanFilter
+predict	kalman_filter.hpp	/^  bool predict(const Eigen::MatrixXd &u);$/;"	p	class:KalmanFilter
+update	kalman_filter.hpp	/^  bool update(const Eigen::MatrixXd &y, const Eigen::MatrixXd &y_pred,$/;"	p	class:KalmanFilter
+update	kalman_filter.hpp	/^  bool update(const Eigen::MatrixXd &y, const Eigen::MatrixXd &C,$/;"	p	class:KalmanFilter
+update	kalman_filter.hpp	/^  bool update(const Eigen::MatrixXd &y);$/;"	p	class:KalmanFilter
+x_	kalman_filter.hpp	/^  Eigen::MatrixXd x_;  \/\/!< @brief current estimated state$/;"	m	class:KalmanFilter
+A_	kalman_filter.hpp	/^  Eigen::MatrixXd A_;  \/\/!< @brief coefficient matrix of x for process model x[k+1] = A*x[k] + B*u[k]$/;"	m	class:KalmanFilter
+B_	kalman_filter.hpp	/^  Eigen::MatrixXd B_;  \/\/!< @brief coefficient matrix of u for process model x[k+1] = A*x[k] + B*u[k]$/;"	m	class:KalmanFilter
+C_	kalman_filter.hpp	/^  Eigen::MatrixXd C_;  \/\/!< @brief coefficient matrix of x for measurement model y[k] = C * x[k]$/;"	m	class:KalmanFilter
+Q_	kalman_filter.hpp	/^  Eigen::MatrixXd Q_;  \/\/!< @brief covariace matrix for process model x[k+1] = A*x[k] + B*u[k]$/;"	m	class:KalmanFilter
+R_	kalman_filter.hpp	/^  Eigen::MatrixXd R_;  \/\/!< @brief covariance matrix for measurement model y[k] = C * x[k]$/;"	m	class:KalmanFilter
+P_	kalman_filter.hpp	/^  Eigen::MatrixXd P_;  \/\/!< @brief covariance of estimated state$/;"	m	class:KalmanFilter
+AMATHUTILS_LIB_TIME_DELAY_KALMAN_FILTER_HPP	time_delay_kalman_filter.hpp	18;"	d
+TimeDelayKalmanFilter	time_delay_kalman_filter.hpp	/^class TimeDelayKalmanFilter : public KalmanFilter$/;"	c
+TimeDelayKalmanFilter	time_delay_kalman_filter.hpp	/^  TimeDelayKalmanFilter();$/;"	p	class:TimeDelayKalmanFilter
+init	time_delay_kalman_filter.hpp	/^  void init(const Eigen::MatrixXd &x, const Eigen::MatrixXd &P, const int max_delay_step);$/;"	p	class:TimeDelayKalmanFilter
+getLatestX	time_delay_kalman_filter.hpp	/^  void getLatestX(Eigen::MatrixXd &x);$/;"	p	class:TimeDelayKalmanFilter
+getLatestP	time_delay_kalman_filter.hpp	/^  void getLatestP(Eigen::MatrixXd &P);$/;"	p	class:TimeDelayKalmanFilter
+predictWithDelay	time_delay_kalman_filter.hpp	/^  bool predictWithDelay(const Eigen::MatrixXd &x_next, const Eigen::MatrixXd &A,$/;"	p	class:TimeDelayKalmanFilter
+updateWithDelay	time_delay_kalman_filter.hpp	/^  bool updateWithDelay(const Eigen::MatrixXd &y, const Eigen::MatrixXd &C,$/;"	p	class:TimeDelayKalmanFilter
+max_delay_step_	time_delay_kalman_filter.hpp	/^  int max_delay_step_;  \/\/!< @brief maximum number of delay steps$/;"	m	class:TimeDelayKalmanFilter
+dim_x_	time_delay_kalman_filter.hpp	/^  int dim_x_;           \/\/!< @brief dimension of latest state$/;"	m	class:TimeDelayKalmanFilter
+dim_x_ex_	time_delay_kalman_filter.hpp	/^  int dim_x_ex_;        \/\/!< @brief dimension of extended state with dime delay$/;"	m	class:TimeDelayKalmanFilter

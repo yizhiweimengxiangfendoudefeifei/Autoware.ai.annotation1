@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>synchronization</name>
+  <version>1.12.0</version>
+  <description>The synchronization package</description>
+  <maintainer email="yukky@ubi.cs.ritsumei.ac.jp">Yukihiro SAITO</maintainer>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>autoware_msgs</depend>
+  <depend>lidar_tracker</depend>
+  <depend>points2image</depend>
+  <depend>std_msgs</depend>
+</package>

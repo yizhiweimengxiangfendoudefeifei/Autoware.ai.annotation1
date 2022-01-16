@@ -1,0 +1,7 @@
+<!-- -->
+<launch>
+  <arg name="use_ll2" default="true" />
+
+  <node if="$(arg use_ll2)" pkg="lane_planner" type="lane_rule_lanelet2" name="lane_rule" output="screen" />
+  <node unless="$(arg use_ll2)" pkg="lane_planner" type="lane_rule" name="lane_rule" output="screen" />
+</launch>

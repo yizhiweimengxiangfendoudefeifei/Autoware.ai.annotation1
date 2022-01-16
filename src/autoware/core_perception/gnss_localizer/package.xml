@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>gnss_localizer</name>
+  <version>1.12.0</version>
+  <description>The gnss_localizer package</description>
+  <maintainer email="h_ohta@ertl.jp">h_ohta</maintainer>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>geometry_msgs</depend>
+  <depend>gnss</depend>
+  <depend>nmea_msgs</depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>tf</depend>
+
+  <test_depend>rosunit</test_depend>
+  <test_depend>rostest</test_depend>
+</package>

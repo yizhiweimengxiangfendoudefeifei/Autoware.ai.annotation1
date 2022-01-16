@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>gnss</name>
+  <version>1.12.0</version>
+  <description>The gnss package</description>
+  <maintainer email="tomo@axe.bz">Tomomi HORII</maintainer>
+  <license>Apache 2</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>roslint</depend>
+</package>

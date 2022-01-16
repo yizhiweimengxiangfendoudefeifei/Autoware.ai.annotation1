@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>integrated_viewer</name>
+  <version>1.12.0</version>
+  <description>The integrated_viewer package</description>
+  <maintainer email="hirabayashi@ertl.jp">hirabayashi</maintainer>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>autoware_msgs</depend>
+  <depend>cv_bridge</depend>
+  <depend>image_transport</depend>
+  <depend>qtbase5-dev</depend>
+  <depend>roscpp</depend>
+  <depend>rviz</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+
+  <exec_depend>libqt5-core</exec_depend>
+  <exec_depend>libqt5-widgets</exec_depend>
+
+  <export>
+    <rviz plugin="${prefix}/rviz_plugin_description.xml"/>
+  </export>
+</package>

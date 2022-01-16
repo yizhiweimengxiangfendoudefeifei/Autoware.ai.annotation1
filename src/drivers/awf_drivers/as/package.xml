@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>as</name>
+  <version>1.12.0</version>
+  <description>The Autonomoustuff SSC interface package</description>
+  <maintainer email="aohsato@gmail.com">Akihito Ohsato</maintainer>
+  <author email="aohsato@gmail.com">Akihito Ohsato</author>
+  <author email="antm678@ertl.jp">T.Ando</author>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>automotive_navigation_msgs</depend>
+  <depend>automotive_platform_msgs</depend>
+  <depend>autoware_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>message_filters</depend>
+  <depend>ros_observer</depend>  
+  <depend>roscpp</depend>
+  <depend>roslint</depend>
+  <depend>std_msgs</depend>
+</package>

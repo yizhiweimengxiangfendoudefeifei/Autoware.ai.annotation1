@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>lidar_apollo_cnn_seg_detect</name>
+  <version>1.12.0</version>
+  <description>The apollo cnn segmentation package</description>
+  <maintainer email="cirpue49@yahoo.co.jp">Kosuke Murakami</maintainer>
+  <author email="cirpue49@yahoo.co.jp">Kosuke Murakami</author>
+  <license>BSD</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>autoware_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>pcl_ros</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf</depend>
+  <depend>tf_conversions</depend>
+</package>

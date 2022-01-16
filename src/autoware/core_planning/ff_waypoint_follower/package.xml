@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ff_waypoint_follower</name>
+  <version>1.12.0</version>
+  <description>The ff_waypoint_follower package</description>
+  <maintainer email="yusuke.fujii@tier4.jp">Yusuke FUJII</maintainer>
+  <author email="hatem.darweesh@g.sp.m.is.nagoya-u.ac.jp">Hatem Darweesh</author>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <depend>autoware_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>map_file</depend>
+  <depend>op_planner</depend>
+  <depend>op_simu</depend>
+  <depend>op_utility</depend>
+  <depend>roscpp</depend>
+  <depend>libwaypoint_follower</depend>
+</package>

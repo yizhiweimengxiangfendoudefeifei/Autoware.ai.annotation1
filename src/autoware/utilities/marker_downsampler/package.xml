@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>marker_downsampler</name>
+  <version>1.12.0</version>
+  <description>The marker_downsampler package</description>
+  <maintainer email="hironari.yashiro@tier4.jp">hironariyashiro</maintainer>
+  <license>Apache 2</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>message_filters</depend>
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>visualization_msgs</depend>
+</package>

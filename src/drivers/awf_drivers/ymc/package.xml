@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ymc</name>
+  <version>1.12.0</version>
+  <description>The ymc package</description>
+  <maintainer email="aohsato@gmail.com">Akihito Ohsato</maintainer>
+  <author email="aohsato@gmail.com">Akihito Ohsato</author>
+  <author email="antm678@ertl.jp">T.Ando</author>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>autoware_msgs</depend>
+  <depend>ds4_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>ros_observer</depend>  
+  <depend>rosconsole</depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+
+  <exec_depend>can-utils</exec_depend>
+</package>

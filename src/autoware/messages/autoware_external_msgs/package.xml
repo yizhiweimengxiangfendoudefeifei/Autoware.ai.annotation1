@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>autoware_external_msgs</name>
+  <version>1.13.0</version>
+  <description>Package to contain an install external message dependencies</description>
+
+  <author email="abrahammonrroy@yahoo.com">Abraham Monrroy</author>
+  <maintainer email="abrahammonrroy@yahoo.com">Abraham Monrroy</maintainer>
+
+  <license>Apache 2</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>lgsvl_msgs</depend>
+</package>

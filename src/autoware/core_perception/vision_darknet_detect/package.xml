@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>vision_darknet_detect</name>
+  <version>1.12.0</version>
+  <description>darknet image detector</description>
+  <maintainer email="abrahammonrroy@yahoo.com">Abraham Monrroy</maintainer>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>autoware_config_msgs</depend>
+  <depend>autoware_msgs</depend>
+  <depend>cv_bridge</depend>
+  <depend>image_transport</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+</package>

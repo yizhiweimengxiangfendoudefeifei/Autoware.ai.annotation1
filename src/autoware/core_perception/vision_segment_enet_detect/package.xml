@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>vision_segment_enet_detect</name>
+  <version>1.12.0</version>
+  <description>Image Segmentation</description>
+  <maintainer email="abrahammonrroy@yahoo.com">Abraham Monrroy</maintainer>
+  <license>Apache 2</license>
+
+  <buildtool_depend>autoware_build_flags</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>cv_bridge</depend>
+  <depend>image_transport</depend>
+  <depend>libgflags-dev</depend>
+  <depend>libgoogle-glog-dev</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+</package>

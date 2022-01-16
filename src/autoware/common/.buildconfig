@@ -1,0 +1,10 @@
+[default]
+name=Default
+runtime=host
+config-opts=
+run-opts=
+prefix=/home/nvidia/.cache/gnome-builder/install/object_map/host
+app-id=
+postbuild=
+prebuild=
+default=true
