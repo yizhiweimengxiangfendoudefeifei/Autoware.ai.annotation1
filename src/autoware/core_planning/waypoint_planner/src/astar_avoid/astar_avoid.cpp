@@ -156,6 +156,7 @@ void AstarAvoid::run()
   // relaying mode at startup
   state_ = AstarAvoid::STATE::RELAYING;
   // start publish thread
+  //什么是线程？
   publish_thread_ = std::thread(&AstarAvoid::publishWaypoints, this);
 
   while (ros::ok())
@@ -187,7 +188,7 @@ void AstarAvoid::run()
     }
     else if (state_ == AstarAvoid::STATE::STOPPING)
     {
-      //检查重规划时间间隔replan_interval=0.5s,每0.5s更新一次
+      //检查重规划时间间隔replan_interval=0.5s,每0.5s更新一次,toSec()把时间戳转化成浮点型格式
       bool replan = ((ros::WallTime::now() - start_plan_time).toSec() > replan_interval_);
 
       if (!found_obstacle)
