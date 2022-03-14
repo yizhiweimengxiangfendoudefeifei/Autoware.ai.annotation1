@@ -17,7 +17,9 @@ Necessary topics are not subscribed yet ...     节点是pure_pursuit
  9.适配速腾激光雷达：要下载rslidar_sdk，修改config中的config.yaml的frame_id为velodyne,再<remap from="rslidar_points" to="/points_raw" />  
  10.节点waypoint_loader注释 
  11.最重要的发现！！！vehicle_cmd包含所有的控制消息，包含四元数，线速度，加速度，转角  
- 12.标定命令 roslaunch autoware_camera_lidar_calibrator camera_lidar_calibration.launch intrinsics_file:=/home/ne0/Desktop/calib_heat_camera1_rear_center_fisheye.yaml compressed_stream:=True camera_id:=camera1
+ 12.标定命令 roslaunch autoware_camera_lidar_calibrator camera_lidar_calibration.launch intrinsics_file:=/home/ne0/Desktop/calib_heat_camera1_rear_center_fisheye.yaml compressed_stream:=True camera_id:=camera1  
+ 13.astar_avoid节点配置说明:  
+ 主要的内容在大循环while (ros::ok())中，重新规划的方法在其中有详细的描述，需要详细看，2022-0320前看完
 # 问题
 1.steering_robot_有一个节点在哪？  
 2.问题For frame [velodyne]: No transform to fixed frame [world].  TF error: [Could not find a connection between 'world' and 'velodyne' because they are not part of the same tree.Tf has two or more unconnected trees.]  
