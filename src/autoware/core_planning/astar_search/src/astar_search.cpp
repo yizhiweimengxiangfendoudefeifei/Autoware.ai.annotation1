@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+*/
 
 #include "astar_search/astar_search.h"
 
@@ -194,6 +194,7 @@ void AstarSearch::initialize(const nav_msgs::OccupancyGrid& costmap)
   }
 }
 
+//设置搜索起点，基于wavefront算法更新nodes_中节点的启发式代价，最后调用search函数开启A*算法
 bool AstarSearch::makePlan(const geometry_msgs::Pose& start_pose, const geometry_msgs::Pose& goal_pose)
 {
   if (!setStartNode(start_pose))
@@ -212,12 +213,13 @@ bool AstarSearch::makePlan(const geometry_msgs::Pose& start_pose, const geometry
   return search();
 }
 
+//设置起始地图节点并将其加入openList
 bool AstarSearch::setStartNode(const geometry_msgs::Pose& start_pose)
 {
   // Get index of start pose
   int index_x, index_y, index_theta;
   start_pose_local_.pose = start_pose;
-  poseToIndex(start_pose_local_.pose, &index_x, &index_y, &index_theta);
+  poseToIndex(start_pose_local_.pose, &index_x, &index_y, &index_theta);//根据传入函数的pose确定对应地图节点在三维栅格化代价地图中nodes_中的坐标
   SimpleNode start_sn(index_x, index_y, index_theta, 0, 0);
 
   // Check if start is valid
@@ -304,6 +306,7 @@ void AstarSearch::poseToIndex(const geometry_msgs::Pose& pose, int* index_x, int
   tf::poseMsgToTF(costmap_.info.origin, orig_tf);
   geometry_msgs::Pose pose2d = transformPose(pose, orig_tf.inverse());
 
+  //根据横纵坐标的单位长度计算得到pose对应的横纵坐标
   *index_x = pose2d.position.x / costmap_.info.resolution;
   *index_y = pose2d.position.y / costmap_.info.resolution;
 
@@ -327,6 +330,7 @@ void AstarSearch::pointToIndex(const geometry_msgs::Point& point, int* index_x, 
   poseToIndex(pose, index_x, index_y, &index_theta);
 }
 
+//检查下标是否溢出
 bool AstarSearch::isOutOfRange(int index_x, int index_y)
 {
   if (index_x < 0 || index_x >= static_cast<int>(costmap_.info.width) || index_y < 0 ||
@@ -350,7 +354,7 @@ bool AstarSearch::search()
     double msec = (now - begin).toSec() * 1000.0;
     if (msec > time_limit_)
     {
-      // ROS_WARN("Exceed time limit of %lf [ms]", time_limit_);
+      ROS_WARN("Exceed time limit of %lf [ms]", time_limit_);
       return false;
     }
 

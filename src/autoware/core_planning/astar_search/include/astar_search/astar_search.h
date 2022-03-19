@@ -78,7 +78,7 @@ private:
   double minimum_turning_radius_; // [m]]
 
   // search configs
-  int theta_size_;                  // descritized angle table size [-]
+  int theta_size_;                  // descretized angle table size [-]
   double curve_weight_;             // curve moving cost [-]
   double reverse_weight_;           // backward moving cost [-]
   double lateral_goal_range_;       // reaching threshold, lateral error [m]
@@ -92,7 +92,7 @@ private:
 
   // hybrid astar variables
   std::vector<std::vector<NodeUpdate>> state_update_table_;
-  std::vector<std::vector<std::vector<AstarNode>>> nodes_;
+  std::vector<std::vector<std::vector<AstarNode>>> nodes_;//三维立方体
   std::priority_queue<SimpleNode, std::vector<SimpleNode>, std::greater<SimpleNode>> openlist_;
   std::vector<SimpleNode> goallist_;
 
