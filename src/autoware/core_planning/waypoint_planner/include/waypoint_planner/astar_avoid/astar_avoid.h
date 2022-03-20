@@ -70,7 +70,7 @@ private:
   bool enable_avoidance_;           // enable avoidance mode
   double avoid_waypoints_velocity_; // constant velocity on planned waypoints [km/h]
   double avoid_start_velocity_;     // self velocity for staring avoidance behavior [km/h]
-  double replan_interval_;          // replan interval for avoidance planning [Hz]
+  double replan_interval_;          // replan interval for avoidance planning [Hz]是s吗？？？
   int search_waypoints_size_;       // range of waypoints for incremental search [-]
   int search_waypoints_delta_;      // skipped waypoints for incremental search [-]
   int closest_search_size_;         // search closest waypoint around your car [-]

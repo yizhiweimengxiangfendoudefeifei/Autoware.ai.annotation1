@@ -34,8 +34,8 @@ AstarAvoid::AstarAvoid()
 
   private_nh_.param<bool>("enable_avoidance", enable_avoidance_, true);
   private_nh_.param<double>("avoid_waypoints_velocity", avoid_waypoints_velocity_, 10.0);
-  private_nh_.param<double>("avoid_start_velocity", avoid_start_velocity_, 3.6);
-  private_nh_.param<double>("replan_interval", replan_interval_, 2.0);
+  private_nh_.param<double>("avoid_start_velocity", avoid_start_velocity_, 5);
+  private_nh_.param<double>("replan_interval", replan_interval_, 0.5);
   private_nh_.param<int>("search_waypoints_size", search_waypoints_size_, 50);
   private_nh_.param<int>("search_waypoints_delta", search_waypoints_delta_, 2);
   private_nh_.param<int>("closest_search_size", closest_search_size_, 30);
@@ -171,7 +171,7 @@ void AstarAvoid::run()
 
     // avoidance mode
     bool found_obstacle = (obstacle_waypoint_index_ >= 0);
-    //avoid_start_velocity_避让开始时自车速度1m/s
+    //avoid_start_velocity_避让开始时自车速度1.2m/s
     bool avoid_velocity = (current_velocity_.twist.linear.x < avoid_start_velocity_ / 3.6);
 
     // update state
@@ -192,7 +192,7 @@ void AstarAvoid::run()
 
       if (!found_obstacle)
       {
-        ROS_INFO("STOPPING -> RELAYING, Obstacle disappers");
+        //ROS_INFO("STOPPING -> RELAYING, Obstacle disappers");
         state_ = AstarAvoid::STATE::RELAYING;
       }
       //从停车模式转换为规划模式
@@ -201,7 +201,6 @@ void AstarAvoid::run()
       {
         ROS_INFO("STOPPING -> PLANNING, Start A* planning");
         state_ = AstarAvoid::STATE::PLANNING;
-        std::cout << "planning" << std::endl;
       }
     }
     //确定避障路线并相应添加进avoid_waypoints_，同时更新传入函数的end_of_avoid_index，
@@ -277,7 +276,8 @@ bool AstarAvoid::planAvoidWaypoints(int& end_of_avoid_index)
   for (int i = search_waypoints_delta_; i < static_cast<int>(search_waypoints_size_); i += search_waypoints_delta_)
   {
     // update goal index
-    int goal_waypoint_index = closest_waypoint_index + obstacle_waypoint_index_ + i;
+    //ff修改为+5
+    int goal_waypoint_index = closest_waypoint_index + obstacle_waypoint_index_ + i + 5;
     if (goal_waypoint_index >= static_cast<int>(avoid_waypoints_.waypoints.size()))
     {
       break;
@@ -304,8 +304,9 @@ bool AstarAvoid::planAvoidWaypoints(int& end_of_avoid_index)
 
     if (found_path)
     {
-      pub.publish(astar_.getPath());
+      pub.publish(astar_.getPath());//发布获得的避障路径
       end_of_avoid_index = goal_waypoint_index;
+      //这个函数用于生效astar规划的路径astar_path，把current_point和goal中间的那一段用astar_path替换
       mergeAvoidWaypoints(astar_.getPath(), end_of_avoid_index);
       if (avoid_waypoints_.waypoints.size() > 0)
       {

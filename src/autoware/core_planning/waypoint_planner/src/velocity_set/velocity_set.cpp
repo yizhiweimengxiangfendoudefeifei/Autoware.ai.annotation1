@@ -244,6 +244,7 @@ EControl crossWalkDetection(const pcl::PointCloud<pcl::PointXYZ>& points, const 
   return EControl::KEEP;  // find no obstacles
 }
 
+//障碍物检测，需要停车。对当前位置后的路径点进行障碍物检测，如果出现points_no_ground点云聚集则视为障碍物点
 int detectStopObstacle(const pcl::PointCloud<pcl::PointXYZ>& points, const int closest_waypoint,
                        const autoware_msgs::Lane& lane, const CrossWalk& crosswalk, double stop_range,
                        double points_threshold, const geometry_msgs::PoseStamped& localizer_pose,
@@ -320,6 +321,7 @@ int detectStopObstacle(const pcl::PointCloud<pcl::PointXYZ>& points, const int c
   return stop_obstacle_waypoint;
 }
 
+//障碍物检测，需要减速
 int detectDecelerateObstacle(const pcl::PointCloud<pcl::PointXYZ>& points, const int closest_waypoint,
                              const autoware_msgs::Lane& lane, const double stop_range, const double deceleration_range,
                              const double points_threshold, const geometry_msgs::PoseStamped& localizer_pose,
@@ -377,6 +379,7 @@ EControl pointsDetection(const pcl::PointCloud<pcl::PointXYZ>& points, const int
                          int* obstacle_waypoint, ObstaclePoints* obstacle_points)
 {
   // no input for detection || no closest waypoint
+  //如果没有点云同时没有从其他节点得到结果，或者当前位置检测失败
   if ((points.empty() == true && vs_info.getDetectionResultByOtherNodes() == -1) || closest_waypoint < 0)
     return EControl::KEEP;
 
@@ -419,8 +422,10 @@ EControl pointsDetection(const pcl::PointCloud<pcl::PointXYZ>& points, const int
   }
 
   // about 5.0 meter
+  //存在停止障碍物且存在减速障碍物
   double waypoint_interval =
       getPlaneDistance(lane.waypoints[0].pose.pose.position, lane.waypoints[1].pose.pose.position);
+  //计算5米需要几个路径点
   int stop_decelerate_threshold = 5 / waypoint_interval;
 
   // both were found
@@ -436,6 +441,8 @@ EControl pointsDetection(const pcl::PointCloud<pcl::PointXYZ>& points, const int
   }
 }
 
+//主要功能是对pointsDetection()返回的EControl状态，除了显示障碍物的位置之外，还要进行一项特殊处理：
+//如果上一次检测发现了障碍无，但是最近一次检测没有障碍物，就等一下再走，以保证安全。
 EControl obstacleDetection(int closest_waypoint, const autoware_msgs::Lane& lane, const CrossWalk& crosswalk,
                            const VelocitySetInfo vs_info, const ros::Publisher& detection_range_pub,
                            const ros::Publisher& obstacle_pub, int* obstacle_waypoint)
@@ -480,6 +487,8 @@ EControl obstacleDetection(int closest_waypoint, const autoware_msgs::Lane& lane
   return detection_result;
 }
 
+//根据obstacleDetection函数返回的EControl状态（如stop和decelerate状态），对当前位路径点和obstacle路径点之间的路径点的速度信息进行调整，
+//进而在pure_suit环节形成减速和停车现象
 void changeWaypoints(const VelocitySetInfo& vs_info, const EControl& detection_result, int closest_waypoint,
                      int obstacle_waypoint, const ros::Publisher& final_waypoints_pub, VelocitySetPath* vs_path)
 {
@@ -593,10 +602,12 @@ int main(int argc, char** argv)
       crosswalk.setDetectionWaypoint(
           crosswalk.findClosestCrosswalk(closest_waypoint, vs_path.getPrevWaypoints(), STOP_SEARCH_DISTANCE));
 
+    //检测障碍物位于当前线路的索引值，并根据距离信息判断当前需要停车还是减速
     int obstacle_waypoint = -1;
     EControl detection_result = obstacleDetection(closest_waypoint, vs_path.getPrevWaypoints(), crosswalk, vs_info,
                                                   detection_range_pub, obstacle_pub, &obstacle_waypoint);
 
+    //根据车辆需要的状态，修改后方waypoints中的速度信息，进而在pure_presuit节点形成减速或者停车的效果。
     changeWaypoints(vs_info, detection_result, closest_waypoint,
                     obstacle_waypoint, final_waypoints_pub, &vs_path);
 

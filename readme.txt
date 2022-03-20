@@ -46,6 +46,10 @@ vehicle_cmd包含所有的控制消息，包含四元数，线速度，加速度
 17.有关上车实践方面，需要加上twist_filter，在其中发出话题ctrl_cmd注意怎么用
 18.roslaunch autoware_camera_lidar_calibrator camera_lidar_calibration.launch intrinsics_file:=/home/ne0/Desktop/calib_heat_camera1_rear_center_fisheye.yaml compressed_stream:=True camera_id:=camera1
 标定的命令
+19.有关停车的命令
+要将pure_pusuit设置为跟踪路径点的速度，velocity_set中设置为points_raw
+20.velocity_Set启动的是velocity_set_option.launch
+
 安装autoware 1.14的教程：
 https://www.cnblogs.com/hgl0417/p/14617025.html
 https://gitlab.com/autowarefoundation/autoware.ai/autoware/-/wikis/Source-Build

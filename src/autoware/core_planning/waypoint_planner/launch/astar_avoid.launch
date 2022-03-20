@@ -8,8 +8,8 @@
   <arg name="costmap_topic" default="semantics/costmap_generator/occupancy_grid" />
   <arg name="enable_avoidance" default="true" />
   <arg name="avoid_waypoints_velocity" default="10.0" />
-  <arg name="avoid_start_velocity" default="3.6" />
-  <arg name="replan_interval" default="2.0" />
+  <arg name="avoid_start_velocity" default="5" />
+  <arg name="replan_interval" default="0.5" />
   <arg name="search_waypoints_size" default="50" />
   <arg name="search_waypoints_delta" default="2" />
   <arg name="closest_search_size" default="30" />
