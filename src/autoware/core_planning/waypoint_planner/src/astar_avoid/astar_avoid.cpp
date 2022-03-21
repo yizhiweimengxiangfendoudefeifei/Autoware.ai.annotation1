@@ -34,8 +34,13 @@ AstarAvoid::AstarAvoid()
 
   private_nh_.param<bool>("enable_avoidance", enable_avoidance_, true);
   private_nh_.param<double>("avoid_waypoints_velocity", avoid_waypoints_velocity_, 10.0);
+<<<<<<< HEAD
   private_nh_.param<double>("avoid_start_velocity", avoid_start_velocity_, 5);
   private_nh_.param<double>("replan_interval", replan_interval_, 0.5);
+=======
+  private_nh_.param<double>("avoid_start_velocity", avoid_start_velocity_, 14.4);//km/h
+  private_nh_.param<double>("replan_interval", replan_interval_, 2.0);
+>>>>>>> f7ac1e00edf17a32af9d8064b0f89007fe368c3a
   private_nh_.param<int>("search_waypoints_size", search_waypoints_size_, 50);
   private_nh_.param<int>("search_waypoints_delta", search_waypoints_delta_, 2);
   private_nh_.param<int>("closest_search_size", closest_search_size_, 30);
@@ -46,6 +51,7 @@ AstarAvoid::AstarAvoid()
   current_velocity_sub_ = nh_.subscribe("current_velocity", 1, &AstarAvoid::currentVelocityCallback, this);
   base_waypoints_sub_ = nh_.subscribe("base_waypoints", 1, &AstarAvoid::baseWaypointsCallback, this);
   closest_waypoint_sub_ = nh_.subscribe("closest_waypoint", 1, &AstarAvoid::closestWaypointCallback, this);
+  //谁发出来的
   obstacle_waypoint_sub_ = nh_.subscribe("obstacle_waypoint", 1, &AstarAvoid::obstacleWaypointCallback, this);
 
   rate_ = new ros::Rate(update_rate_);
@@ -145,24 +151,25 @@ void AstarAvoid::run()
     ros::Duration(1.0).sleep();
   }
 
-  // main loop
-  int end_of_avoid_index = -1;
-  ros::WallTime start_plan_time = ros::WallTime::now();
+  // main loop 时钟时间
+  int end_of_avoid_index = -1;//初始化用于终止发布路径点的索引
+  ros::WallTime start_plan_time = ros::WallTime::now();//设置规划开始的时间。
   ros::WallTime start_avoid_time = ros::WallTime::now();
 
   // reset obstacle index
-  obstacle_waypoint_index_ = -1;
+  obstacle_waypoint_index_ = -1;//初始化用于表示障碍物的索引
 
   // relaying mode at startup
   state_ = AstarAvoid::STATE::RELAYING;
   // start publish thread
-  publish_thread_ = std::thread(&AstarAvoid::publishWaypoints, this);
+  //什么是线程？
+  publish_thread_ = std::thread(&AstarAvoid::publishWaypoints, this);//开启第二个线程。
 
   while (ros::ok())
   {
     ros::spinOnce();
 
-    // relay mode
+    // relay mode就会一直在这个循环中进行
     if (!enable_avoidance_)
     {
       rate_->sleep();
@@ -171,7 +178,11 @@ void AstarAvoid::run()
 
     // avoidance mode
     bool found_obstacle = (obstacle_waypoint_index_ >= 0);
+<<<<<<< HEAD
     //avoid_start_velocity_避让开始时自车速度1.2m/s
+=======
+    //avoid_start_velocity_避让开始时自车速度4m/s
+>>>>>>> f7ac1e00edf17a32af9d8064b0f89007fe368c3a
     bool avoid_velocity = (current_velocity_.twist.linear.x < avoid_start_velocity_ / 3.6);
 
     // update state
@@ -187,7 +198,7 @@ void AstarAvoid::run()
     }
     else if (state_ == AstarAvoid::STATE::STOPPING)
     {
-      //检查重规划时间间隔replan_interval=0.5s,每0.5s更新一次
+      //检查重规划时间间隔，时间间隔越小越可能进行重规划replan_interval=2hz,每0.5s更新一次,toSec()把时间戳转化成浮点型格式
       bool replan = ((ros::WallTime::now() - start_plan_time).toSec() > replan_interval_);
 
       if (!found_obstacle)
@@ -224,7 +235,7 @@ void AstarAvoid::run()
     }
     else if (state_ == AstarAvoid::STATE::AVOIDING)
     {
-      //如何实现的？？？
+      
       //reached为函数getLocalClosestWaypoint获得距离最近轨迹点的下标
       bool reached = (getLocalClosestWaypoint(avoid_waypoints_, current_pose_global_.pose, closest_search_size_) > end_of_avoid_index);
       if (reached)
@@ -243,6 +254,7 @@ void AstarAvoid::run()
       }
     }
 
+    //目的就是一个周期内的剩余时间均处于sleep状态
     rate_->sleep();
   }
 
@@ -265,14 +277,16 @@ bool AstarAvoid::checkInitialized()
 
   return initialized;
 }
+
 //逐步更新目标位姿，并执行从当前位姿到目标位姿的基于A*算法的增量搜索，确定避障路线并相应添加进avoid_waypoints_
 bool AstarAvoid::planAvoidWaypoints(int& end_of_avoid_index)
 {
   bool found_path = false;
+  //得到最近轨迹点
   int closest_waypoint_index = getLocalClosestWaypoint(avoid_waypoints_, current_pose_global_.pose, closest_search_size_);
 
   // update goal pose incrementally and execute A* search，
-  //search_waypoints_delta_用于跳过轨迹点进行增量搜索
+  //search_waypoints_delta_ 用于跳过轨迹点进行增量搜索，static_cast<int>强制将数据类型转换为整型
   for (int i = search_waypoints_delta_; i < static_cast<int>(search_waypoints_size_); i += search_waypoints_delta_)
   {
     // update goal index
@@ -290,7 +304,7 @@ bool AstarAvoid::planAvoidWaypoints(int& end_of_avoid_index)
     goal_pose_local_.pose = transformPose(goal_pose_global_.pose,
                                           getTransform(costmap_.header.frame_id, goal_pose_global_.header.frame_id));
 
-    // initialize costmap for A* search
+    // initialize costmap for A* search 这里非常重要，是整个A*搜索算法的核心
     astar_.initialize(costmap_);
 
     // execute astar search
@@ -304,9 +318,16 @@ bool AstarAvoid::planAvoidWaypoints(int& end_of_avoid_index)
 
     if (found_path)
     {
+<<<<<<< HEAD
       pub.publish(astar_.getPath());//发布获得的避障路径
       end_of_avoid_index = goal_waypoint_index;
       //这个函数用于生效astar规划的路径astar_path，把current_point和goal中间的那一段用astar_path替换
+=======
+      //getPath函数获得astar_中的成员path_
+      pub.publish(astar_.getPath());
+      end_of_avoid_index = goal_waypoint_index;
+      //将用于避撞的轨迹astar_.getPath()合并进avoid_waypoints_并更新end_of_avoid_index
+>>>>>>> f7ac1e00edf17a32af9d8064b0f89007fe368c3a
       mergeAvoidWaypoints(astar_.getPath(), end_of_avoid_index);
       if (avoid_waypoints_.waypoints.size() > 0)
       {
@@ -319,6 +340,7 @@ bool AstarAvoid::planAvoidWaypoints(int& end_of_avoid_index)
         found_path = false;
       }
     }
+    //用于重置astar_中用于A*搜索的信息
     astar_.reset();
   }
 
