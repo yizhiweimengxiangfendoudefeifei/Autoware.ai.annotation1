@@ -22,7 +22,7 @@ Necessary topics are not subscribed yet ...     节点是pure_pursuit
  主要的内容在大循环while (ros::ok())中，重新规划的方法在其中有详细的描述，需要详细看，2022-0320前看完  
 14.relaying->stoping->planning->avoiding->relaying  
 15. /points_no_ground (points above ground)，是指在地面以上的点云，那么车应该是points_no_ground？  
-16. 注意看博客园中大佬写的openplanner文章。  
+16. 修改了common/op_planner/src/BehaviorStateMachine.cpp中443行的代码，使得车辆在任务结束后可以重新规划到目标点  
 # 问题
 1.steering_robot_有一个节点在哪？  
 2.问题For frame [velodyne]: No transform to fixed frame [world].  TF error: [Could not find a connection between 'world' and 'velodyne' because they are not part of the same tree.Tf has two or more unconnected trees.]  
