@@ -23,6 +23,7 @@ Necessary topics are not subscribed yet ...     节点是pure_pursuit
 14.relaying->stoping->planning->avoiding->relaying  
 15. /points_no_ground (points above ground)，是指在地面以上的点云，那么车应该是points_no_ground？  
 16. 修改了common/op_planner/src/BehaviorStateMachine.cpp中443行的代码，使得车辆在任务结束后可以重新规划到目标点  
+17. 找到目标点后会输出“Current Goal Index =”  
 # 问题
 1.steering_robot_有一个节点在哪？  
 2.问题For frame [velodyne]: No transform to fixed frame [world].  TF error: [Could not find a connection between 'world' and 'velodyne' because they are not part of the same tree.Tf has two or more unconnected trees.]  
