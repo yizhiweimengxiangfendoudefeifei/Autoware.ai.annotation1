@@ -442,7 +442,19 @@ BehaviorStateMachine* GoalStateII::GetNextState()
 
 BehaviorStateMachine* MissionAccomplishedStateII::GetNextState()
 {
-  return FindBehaviorState(this->m_Behavior);
+  // -------------ff add 新增代码支持任务结束后，重新规划到目标点----------------
+  PreCalculatedConditions* pCParams = GetCalcParams();
+
+  if(pCParams->currentGoalID == -1)
+      return FindBehaviorState(this->m_Behavior);
+
+  else
+  {
+      pCParams->prevGoalID = pCParams->currentGoalID;
+      return FindBehaviorState(FORWARD_STATE);
+  }
+  //------原来代码
+  //return FindBehaviorState(this->m_Behavior);
 }
 
 BehaviorStateMachine* StopSignStopStateII::GetNextState()

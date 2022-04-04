@@ -57,6 +57,7 @@ GlobalPlanner::GlobalPlanner()
   pub_MapRviz  = nh.advertise<visualization_msgs::MarkerArray>("vector_map_center_lines_rviz", 1, true);
   pub_GoalsListRviz = nh.advertise<visualization_msgs::MarkerArray>("op_destinations_rviz", 1, true);
 
+  //rviz输入目标
   if(m_params.bEnableRvizInput)
   {
     sub_start_pose = nh.subscribe("/initialpose", 1, &GlobalPlanner::callbackGetStartPose, this);
@@ -91,7 +92,7 @@ GlobalPlanner::GlobalPlanner()
   sub_stop_line = nh.subscribe("/vector_map_info/stop_line", 1, &GlobalPlanner::callbackGetVMStopLines,  this);
   sub_signals = nh.subscribe("/vector_map_info/signal", 1, &GlobalPlanner::callbackGetVMSignal,  this);
   sub_vectors = nh.subscribe("/vector_map_info/vector", 1, &GlobalPlanner::callbackGetVMVectors,  this);
-  sub_curbs = nh.subscribe("/vector_map_info/curb", 1, &GlobalPlanner::callbackGetVMCurbs,  this);
+  sub_curbs = nh.subscribe("/vector_map_info/curb", 1, &GlobalPlanner::callbackGetVMCurbs,  this);//这个为空！
   sub_edges = nh.subscribe("/vector_map_info/road_edge", 1, &GlobalPlanner::callbackGetVMRoadEdges,  this);
   sub_way_areas = nh.subscribe("/vector_map_info/way_area", 1, &GlobalPlanner::callbackGetVMWayAreas,  this);
   sub_cross_walk = nh.subscribe("/vector_map_info/cross_walk", 1, &GlobalPlanner::callbackGetVMCrossWalks,  this);
@@ -169,6 +170,7 @@ void GlobalPlanner::ClearOldCostFromMap()
   }
 }
 
+//得到目标点
 void GlobalPlanner::callbackGetGoalPose(const geometry_msgs::PoseStampedConstPtr &msg)
 {
   PlannerHNS::WayPoint wp = PlannerHNS::WayPoint(msg->pose.position.x+m_OriginPos.position.x, msg->pose.position.y+m_OriginPos.position.y, msg->pose.position.z+m_OriginPos.position.z, tf::getYaw(msg->pose.orientation));
@@ -399,7 +401,7 @@ int GlobalPlanner::LoadSimulationData()
 void GlobalPlanner::MainLoop()
 {
   ros::Rate loop_rate(25);
-  timespec animation_timer;
+  timespec animation_timer;//计时器
   UtilityHNS::UtilityH::GetTickCount(animation_timer);
 
   while (ros::ok())
@@ -407,6 +409,7 @@ void GlobalPlanner::MainLoop()
     ros::spinOnce();
     bool bMakeNewPlan = false;
 
+    //地图资源默认地图MAP_AUTOWARE
     if(m_params.mapSource == PlannerHNS::MAP_KML_FILE && !m_bKmlMap)
     {
       m_bKmlMap = true;
@@ -428,10 +431,12 @@ void GlobalPlanner::MainLoop()
     {
       std::vector<UtilityHNS::AisanDataConnFileReader::DataConn> conn_data;;
 
+      //根据地图是否有节点，有节点为2，无节点为1
       if(m_MapRaw.GetVersion()==2)
       {
         std::cout << "Map Version 2" << endl;
         m_bKmlMap = true;
+        //初始化地图
         PlannerHNS::MappingHelpers::ConstructRoadNetworkFromROSMessageV2(m_MapRaw.pLanes->m_data_list, m_MapRaw.pPoints->m_data_list,
             m_MapRaw.pCenterLines->m_data_list, m_MapRaw.pIntersections->m_data_list,m_MapRaw.pAreas->m_data_list,
             m_MapRaw.pLines->m_data_list, m_MapRaw.pStopLines->m_data_list,  m_MapRaw.pSignals->m_data_list,
@@ -458,18 +463,24 @@ void GlobalPlanner::MainLoop()
       }
     }
 
+    //清除一个代价
     ClearOldCostFromMap();
 
+    //m_GoalsPos目标点的个数有几个,如果只有一个目标点那就是1
     if(m_GoalsPos.size() > 0)
     {
+      //m_GeneratedTotalPaths表示生成的路径的总数，m_GeneratedTotalPaths.at(0)表示第一条路径（主路径）的采样点个数
       if(m_GeneratedTotalPaths.size() > 0 && m_GeneratedTotalPaths.at(0).size() > 3)
       {
-        if(m_params.bEnableReplanning)
+        //if(m_params.bEnableReplanning)
+        //ff add
+        if(m_params.bEnableReplanning && m_iCurrentGoalIndex < m_GoalsPos.size() - 1)
         {
           PlannerHNS::RelativeInfo info;
           bool ret = PlannerHNS::PlanningHelpers::GetRelativeInfoRange(m_GeneratedTotalPaths, m_CurrentPose, 0.75, info);
           if(ret == true && info.iGlobalPath >= 0 &&  info.iGlobalPath < m_GeneratedTotalPaths.size() && info.iFront > 0 && info.iFront < m_GeneratedTotalPaths.at(info.iGlobalPath).size())
           {
+            //remaining_distance两个目标点的距离，距离小于30m开始重规划
             double remaining_distance =    m_GeneratedTotalPaths.at(info.iGlobalPath).at(m_GeneratedTotalPaths.at(info.iGlobalPath).size()-1).cost - (m_GeneratedTotalPaths.at(info.iGlobalPath).at(info.iFront).cost + info.to_front_distance);
             if(remaining_distance <= REPLANNING_DISTANCE)
             {
@@ -506,6 +517,7 @@ void GlobalPlanner::MainLoop()
 
 
 //Mapping Section
+//将地图的信息保存到m_MapRaw中
 
 void GlobalPlanner::callbackGetVMLanes(const vector_map_msgs::LaneArray& msg)
 {

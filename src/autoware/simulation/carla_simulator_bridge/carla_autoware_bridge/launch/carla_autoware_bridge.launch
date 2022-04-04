@@ -43,8 +43,36 @@
     # Map loading                #
     ##############################
   -->
-  <include file="$(find map_file)/launch/points_map_loader.launch">
-    <arg name="path_pcd" value='$(env CARLA_MAPS_PATH)/$(arg town).pcd'/>
+  <include file="$(find carla_autoware_agent)/agent/launch/my_map.launch">
+    <!-- <arg name="path_pcd" value='$(env CARLA_MAPS_PATH)/$(arg town).pcd'/> -->
+    <arg name='town' default='Town01'/>
+  </include>
+
+  <!--
+    ##############################
+    # Sensing loading            #
+    ##############################
+  -->
+  <include file="$(find carla_autoware_agent)/agent/launch/my_sensing.launch">
+    
+  </include>
+
+  <!--
+    ##############################
+    # Localization loading       #
+    ##############################
+  -->
+  <include file="$(find carla_autoware_agent)/agent/launch/my_localization.launch">
+    
+  </include>
+
+  <!--
+    ##############################
+    # Detection loading          #
+    ##############################
+  -->
+  <include file="$(find carla_autoware_agent)/agent/launch/my_detection.launch">
+    
   </include>
 
   <!--

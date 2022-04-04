@@ -414,8 +414,15 @@ void TrajectoryDynamicCosts::CalculateLateralAndLongitudinalCostsStatic(vector<T
         if(m_SafetyBorder.PointInsidePolygon(m_SafetyBorder, contourPoints.at(icon).pos) == true)
           trajectoryCosts.at(iCostIndex).bBlocked = true;
 
-        if(lateralDist <= critical_lateral_distance
-            && longitudinalDist >= -carInfo.length/1.5
+        //-------------------------add by ff------------------------
+        if (((obj_info.perp_distance - distance_from_center) * (car_info.perp_distance - distance_from_center) > 0) && lateralDist < fabs(car_info.perp_distance - distance_from_center) && longitudinalDist >= -carInfo.length && longitudinalDist <= 0)
+        {
+            trajectoryCosts.at(iCostIndex).bBlocked = true;
+        }
+        //-----------------------------------------------------------
+        //减去0.2是为了加上安全框的距离，除以1可以让车在车头处才返回主路径，原来的除以1.5在据车尾2/3掉头
+        if(lateralDist - 0.2 <= critical_lateral_distance
+            && longitudinalDist >= -carInfo.length/1.0
             && longitudinalDist < params.minFollowingDistance)
           trajectoryCosts.at(iCostIndex).bBlocked = true;
 

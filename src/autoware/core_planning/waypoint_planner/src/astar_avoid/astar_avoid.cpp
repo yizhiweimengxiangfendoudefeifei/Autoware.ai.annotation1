@@ -34,13 +34,8 @@ AstarAvoid::AstarAvoid()
 
   private_nh_.param<bool>("enable_avoidance", enable_avoidance_, true);
   private_nh_.param<double>("avoid_waypoints_velocity", avoid_waypoints_velocity_, 10.0);
-<<<<<<< HEAD
-  private_nh_.param<double>("avoid_start_velocity", avoid_start_velocity_, 5);
-  private_nh_.param<double>("replan_interval", replan_interval_, 0.5);
-=======
   private_nh_.param<double>("avoid_start_velocity", avoid_start_velocity_, 14.4);//km/h
   private_nh_.param<double>("replan_interval", replan_interval_, 2.0);
->>>>>>> f7ac1e00edf17a32af9d8064b0f89007fe368c3a
   private_nh_.param<int>("search_waypoints_size", search_waypoints_size_, 50);
   private_nh_.param<int>("search_waypoints_delta", search_waypoints_delta_, 2);
   private_nh_.param<int>("closest_search_size", closest_search_size_, 30);
@@ -178,11 +173,7 @@ void AstarAvoid::run()
 
     // avoidance mode
     bool found_obstacle = (obstacle_waypoint_index_ >= 0);
-<<<<<<< HEAD
-    //avoid_start_velocity_避让开始时自车速度1.2m/s
-=======
     //avoid_start_velocity_避让开始时自车速度4m/s
->>>>>>> f7ac1e00edf17a32af9d8064b0f89007fe368c3a
     bool avoid_velocity = (current_velocity_.twist.linear.x < avoid_start_velocity_ / 3.6);
 
     // update state
@@ -318,16 +309,10 @@ bool AstarAvoid::planAvoidWaypoints(int& end_of_avoid_index)
 
     if (found_path)
     {
-<<<<<<< HEAD
-      pub.publish(astar_.getPath());//发布获得的避障路径
-      end_of_avoid_index = goal_waypoint_index;
-      //这个函数用于生效astar规划的路径astar_path，把current_point和goal中间的那一段用astar_path替换
-=======
       //getPath函数获得astar_中的成员path_
       pub.publish(astar_.getPath());
       end_of_avoid_index = goal_waypoint_index;
       //将用于避撞的轨迹astar_.getPath()合并进avoid_waypoints_并更新end_of_avoid_index
->>>>>>> f7ac1e00edf17a32af9d8064b0f89007fe368c3a
       mergeAvoidWaypoints(astar_.getPath(), end_of_avoid_index);
       if (avoid_waypoints_.waypoints.size() > 0)
       {

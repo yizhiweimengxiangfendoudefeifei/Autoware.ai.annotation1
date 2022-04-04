@@ -37,6 +37,7 @@ TrajectoryGen::TrajectoryGen()
   m_OriginPos.position.y  = transform.getOrigin().y();
   m_OriginPos.position.z  = transform.getOrigin().z();
 
+  //发布局部轨迹
   pub_LocalTrajectories = nh.advertise<autoware_msgs::LaneArray>("local_trajectories", 1);
   pub_LocalTrajectoriesRviz = nh.advertise<visualization_msgs::MarkerArray>("local_trajectories_gen_rviz", 1);
 

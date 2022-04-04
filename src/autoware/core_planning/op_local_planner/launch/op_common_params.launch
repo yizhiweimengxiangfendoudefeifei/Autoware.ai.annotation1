@@ -44,7 +44,7 @@
   <arg name="maxAcceleration"       default="3.0" />
   <arg name="maxDeceleration"       default="-3.0" />
       
-  <arg name="velocitySource"      default="2" /> <!-- read velocities from (0- Odometry, 1- autoware current_velocities, 2- car_info) "" -->    
+  <arg name="velocitySource"      default="1" /> <!-- read velocities from (0- Odometry, 1- autoware current_velocities, 2- car_info) "" -->    
 
 
   <node pkg="op_local_planner" type="op_common_params" name="op_common_params" output="screen">
