@@ -29,6 +29,7 @@ Necessary topics are not subscribed yet ...     节点是pure_pursuit
 1. /initialpose和move_base_simple/goal，这是用于在rviz中输入目标点的  
 2. /current_pose和/current_velocity是为了得到车辆现在的位姿和速度的，这个应该是在mission_planning中某个节点发出来的.  
 3. /occupancy_road_status，得到珊格地图，这个节点打开需要勾选2个节点，在Computing下的Semantics中勾选Wayarea2grid和road_occupancy_processor，这两个节点分别发出的话题是/occupancy_wayarea和/occupancy_road_status  
+4. 发出的话题是lane_waypoints_array，还有三个是为了在rviz中可视化global_waypoints_rviz、vector_map_center_lines_rviz和op_destinations_rviz。  
 # 问题
 1.steering_robot_有一个节点在哪？  
 2.问题For frame [velodyne]: No transform to fixed frame [world].  TF error: [Could not find a connection between 'world' and 'velodyne' because they are not part of the same tree.Tf has two or more unconnected trees.]  
