@@ -426,7 +426,9 @@ void PointPillars::onnxToTRTModel(const std::string& model_file,             // 
 
   // create the builder
   nvinfer1::IBuilder* builder = nvinfer1::createInferBuilder(g_logger_);
-  nvinfer1::INetworkDefinition* network = builder->createNetwork();
+  const auto explicitBatch = 1U << static_cast<uint32_t>(nvinfer1::NetworkDefinitionCreationFlag::kEXPLICIT_BATCH);//ff add
+  //nvinfer1::INetworkDefinition* network = builder->createNetwork();
+  nvinfer1::INetworkDefinition *network = builder->createNetworkV2(explicitBatch);
 
   auto parser = nvonnxparser::createParser(*network, g_logger_);
 

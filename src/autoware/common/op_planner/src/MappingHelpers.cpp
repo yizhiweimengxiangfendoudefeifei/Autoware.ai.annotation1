@@ -3362,6 +3362,7 @@ void MappingHelpers::FindAdjacentLanesV2(RoadNetwork& map)
           if(!info.bAfter && !info.bBefore && fabs(info.perp_distance) > 1.2 && fabs(info.perp_distance) < 3.5 && UtilityH::AngleBetweenTwoAnglesPositive(info.perp_point.pos.a, pWP->pos.a) < 0.06)
           {
             WayPoint* pWP2 = &pL2->points.at(info.iFront);
+            //perp_distance为负表示pwp在道路的左边，为正表示在道路的右边
             if(info.perp_distance < 0)
             {
               if(pWP->pRight == 0)
@@ -3393,7 +3394,9 @@ void MappingHelpers::FindAdjacentLanesV2(RoadNetwork& map)
 
               if(pWP2->pRight == 0)
               {
-                pWP2->pRight = pWP->pLeft;
+                //pWP2->pRight = pWP->pLeft;
+                //feifei add
+                pWP2->pRight = pWP;
                 pWP2->RightPointId = pWP->id;
                 pWP2->RightLnId = pL->id;
                 pL2->pRightLane = pL;

@@ -45,7 +45,9 @@ ContourTracker::ContourTracker()
   m_ObstacleTracking.m_bEnableStepByStep = m_Params.bEnableStepByStep;
   m_ObstacleTracking.InitSimpleTracker();
 
-  sub_cloud_clusters     = nh.subscribe("/cloud_clusters", 1, &ContourTracker::callbackGetCloudClusters, this);
+  //sub_cloud_clusters     = nh.subscribe("/cloud_clusters", 1, &ContourTracker::callbackGetCloudClusters, this); 
+  //feifei add
+  sub_cloud_clusters     = nh.subscribe("/detection/lidar_detector/cloud_clusters", 1, &ContourTracker::callbackGetCloudClusters, this);
   sub_current_pose     = nh.subscribe("/current_pose",   1, &ContourTracker::callbackGetCurrentPose,   this);
 
   pub_AllTrackedObjects   = nh.advertise<autoware_msgs::DetectedObjectArray>("tracked_objects", 1);

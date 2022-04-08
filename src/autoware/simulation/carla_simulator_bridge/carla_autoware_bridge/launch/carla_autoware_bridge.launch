@@ -76,6 +76,14 @@
   </include>
 
   <!--
+    ###################
+    ## Visualization ## 
+    ###################
+  -->
+  <arg name='rvizconfig' default='$(find carla_autoware_agent)/agent/rviz/config.rviz'/>
+  <node name='rviz' pkg='rviz' type='rviz' args='-d $(arg rvizconfig)'/>
+
+  <!--
     ##############################
     # ROS remapping + conversion #
     ##############################
