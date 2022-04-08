@@ -21,11 +21,17 @@ Necessary topics are not subscribed yet ...     节点是pure_pursuit
  13.astar_avoid节点配置说明:  
  主要的内容在大循环while (ros::ok())中，重新规划的方法在其中有详细的描述，需要详细看，2022-0320前看完  
 14.relaying->stoping->planning->avoiding->relaying  
-15. /points_no_ground (points above ground)，是指在地面以上的点云即指障碍物，那么车是points_no_ground
+15. /points_no_ground (points above ground)，是指在地面以上的点云即指障碍物，那么车是points_no_ground  
 16. 修改了common/op_planner/src/BehaviorStateMachine.cpp中443行的代码，使得车辆在任务结束后可以重新规划到目标点  
 17. 找到目标点后会输出“Current Goal Index =”  
 18. points_no_ground现在是有消息的。current_pose这个节点是mission_planning中某个节点发出来的。  
-19. /occupancy_road_status这个节点没有数据。
+19. /occupancy_road_status这个节点有数据了。global openplanner需要打开的节点包含：  
+1. /initialpose和move_base_simple/goal，这是用于在rviz中输入目标点的  
+2. /current_pose和/current_velocity是为了得到车辆现在的位姿和速度的，这个应该是在mission_planning中某个节点发出来的.  
+3. /occupancy_road_status，得到珊格地图，这个节点打开需要勾选2个节点，在Computing下的Semantics中勾选Wayarea2grid和road_occupancy_processor，这两个节点分别发出的话题是/occupancy_wayarea和/occupancy_road_status  
+4. 发出的话题是lane_waypoints_array，还有三个是为了在rviz中可视化global_waypoints_rviz、vector_map_center_lines_rviz和op_destinations_rviz。  
+20. 换道逻辑在op_planner/src/MappingHelpers.cpp中的FindAdjacentLanesV2()函数中，里边作了修改，还未读懂。  
+21. 修改了lidar_kf_contour_track_core.cpp中49行的话题bug
 # 问题
 1.steering_robot_有一个节点在哪？  
 2.问题For frame [velodyne]: No transform to fixed frame [world].  TF error: [Could not find a connection between 'world' and 'velodyne' because they are not part of the same tree.Tf has two or more unconnected trees.]  
