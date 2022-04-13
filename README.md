@@ -32,6 +32,7 @@ Necessary topics are not subscribed yet ...     节点是pure_pursuit
 4. 发出的话题是lane_waypoints_array，还有三个是为了在rviz中可视化global_waypoints_rviz、vector_map_center_lines_rviz和op_destinations_rviz。  
 20. 换道逻辑在op_planner/src/MappingHelpers.cpp中的FindAdjacentLanesV2()函数中，里边作了修改，还未读懂。  
 21. 修改了lidar_kf_contour_track_core.cpp中49行的话题bug
+22. 看看节点/behavior_state是否有消息？
 # 问题
 1.steering_robot_有一个节点在哪？  
 2.问题For frame [velodyne]: No transform to fixed frame [world].  TF error: [Could not find a connection between 'world' and 'velodyne' because they are not part of the same tree.Tf has two or more unconnected trees.]  
