@@ -26,12 +26,12 @@ Necessary topics are not subscribed yet ...     节点是pure_pursuit
 17. 找到目标点后会输出“Current Goal Index =”  
 18. points_no_ground现在是有消息的。current_pose这个节点是mission_planning中某个节点发出来的。  
 19. /occupancy_road_status这个节点有数据了。global openplanner需要打开的节点包含：  
-1. /initialpose和move_base_simple/goal，这是用于在rviz中输入目标点的  
-2. /current_pose和/current_velocity是为了得到车辆现在的位姿和速度的，这个应该是在mission_planning中某个节点发出来的.  
-3. /occupancy_road_status，得到珊格地图，这个节点打开需要勾选2个节点，在Computing下的Semantics中勾选Wayarea2grid和road_occupancy_processor，这两个节点分别发出的话题是/occupancy_wayarea和/occupancy_road_status  
-4. 发出的话题是lane_waypoints_array，还有三个是为了在rviz中可视化global_waypoints_rviz、vector_map_center_lines_rviz和op_destinations_rviz。  
-20. 换道逻辑在op_planner/src/MappingHelpers.cpp中的FindAdjacentLanesV2()函数中，里边作了修改，还未读懂。  
-21. 得到车辆转角公式：  
+ 1. /initialpose和move_base_simple/goal，这是用于在rviz中输入目标点的  
+ 2. /current_pose和/current_velocity是为了得到车辆现在的位姿和速度的，这个应该是在mission_planning中某个节点发出来的.  
+ 3. /occupancy_road_status，得到珊格地图，这个节点打开需要勾选2个节点，在Computing下的Semantics中勾选Wayarea2grid和road_occupancy_processor，这两个节点分别发出的话题是/occupancy_wayarea和/occupancy_road_status  
+ 4. 发出的话题是lane_waypoints_array，还有三个是为了在rviz中可视化global_waypoints_rviz、vector_map_center_lines_rviz和op_destinations_rviz。  
+20. 道逻辑在op_planner/src/MappingHelpers.cpp中的FindAdjacentLanesV2()函数中，里边作了修改，还未读懂。  
+21. 到车辆转角公式：  
 a = arctan(l*w/vx) 利用公式v/r = w  
 22. ros包清理 
 rosclean check:检查状态    rosclean purge删除所有内容  
