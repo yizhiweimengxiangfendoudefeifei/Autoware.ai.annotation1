@@ -33,6 +33,8 @@ Necessary topics are not subscribed yet ...     节点是pure_pursuit
 20. 换道逻辑在op_planner/src/MappingHelpers.cpp中的FindAdjacentLanesV2()函数中，里边作了修改，还未读懂。  
 21. 得到车辆转角公式：  
 a = arctan(l*w/vx) 利用公式v/r = w  
+22. ros包清理 
+rosclean check:检查状态    rosclean purge删除所有内容  
 
 # 问题
 1.steering_robot_有一个节点在哪？  
