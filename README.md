@@ -35,7 +35,12 @@ Necessary topics are not subscribed yet ...     节点是pure_pursuit
 a = arctan(l*w/vx) 利用公式v/r = w  
 22. ros包清理 
 rosclean check:检查状态    rosclean purge删除所有内容  
+23. openplanner全局路径注释 
+/home/navigation/autoware.ai/src/autoware/core_planning/op_global_planner/nodes/op_global_planner_core.cpp  
+固定路径密度函数  
 
+/home/navigation/autoware.ai/src/autoware/core_planning/op_local_planner/nodes/op_behavior_selector/op_behavior_selector_core.cpp 
+同样发现了固定路径密度函数函数  
 # 问题
 1.steering_robot_有一个节点在哪？  
 2.问题For frame [velodyne]: No transform to fixed frame [world].  TF error: [Could not find a connection between 'world' and 'velodyne' because they are not part of the same tree.Tf has two or more unconnected trees.]  
