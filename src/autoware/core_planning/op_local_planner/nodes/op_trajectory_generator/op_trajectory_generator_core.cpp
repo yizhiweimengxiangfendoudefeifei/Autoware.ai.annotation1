@@ -118,6 +118,7 @@ void TrajectoryGen::callbackGetInitPose(const geometry_msgs::PoseWithCovarianceS
 {
   if(!bInitPos)
   {
+    //初始化x,y,z和航向角
     m_InitPos = PlannerHNS::WayPoint(msg->pose.pose.position.x+m_OriginPos.position.x,
         msg->pose.pose.position.y+m_OriginPos.position.y,
         msg->pose.pose.position.z+m_OriginPos.position.z,
@@ -135,12 +136,14 @@ void TrajectoryGen::callbackGetCurrentPose(const geometry_msgs::PoseStampedConst
   bInitPos = true;
 }
 
+//从/current_velocity节点得到车辆的状态:包含纵向车速和转向角
 void TrajectoryGen::callbackGetVehicleStatus(const geometry_msgs::TwistStampedConstPtr& msg)
 {
   m_VehicleStatus.speed = msg->twist.linear.x;
   m_CurrentPos.v = m_VehicleStatus.speed;
   if(fabs(msg->twist.linear.x) > 0.25)
-    m_VehicleStatus.steer = atan(m_CarInfo.wheel_base * msg->twist.angular.z/msg->twist.linear.x);
+    
+    m_VehicleStatus.steer = atan(m_CarInfo.wheel_base * msg->twist.angular.z/msg->twist.linear.x);//steer = arctan(l*(w/v))  V/R=W
   UtilityHNS::UtilityH::GetTickCount(m_VehicleStatus.tStamp);
   bVehicleStatus = true;
 }
@@ -165,18 +168,20 @@ void TrajectoryGen::callbackGetGlobalPlannerPath(const autoware_msgs::LaneArrayC
 {
   if(msg->lanes.size() > 0)
   {
+    std::cout << msg->lanes.size() << endl;
     bool bOldGlobalPath = m_GlobalPaths.size() == msg->lanes.size();
 
     m_GlobalPaths.clear();
 
     for(unsigned int i = 0 ; i < msg->lanes.size(); i++)
     {
+      //得到路径的消息存在m_temp_path中
       PlannerHNS::ROSHelpers::ConvertFromAutowareLaneToLocalLane(msg->lanes.at(i), m_temp_path);
 
       PlannerHNS::PlanningHelpers::CalcAngleAndCost(m_temp_path);
       m_GlobalPaths.push_back(m_temp_path);
 
-      if(bOldGlobalPath)
+      if(bOldGlobalPath)//老的路径
       {
         bOldGlobalPath = PlannerHNS::PlanningHelpers::CompareTrajectories(m_temp_path, m_GlobalPaths.at(i));
       }
@@ -218,6 +223,7 @@ void TrajectoryGen::MainLoop()
       }
 
       std::vector<PlannerHNS::WayPoint> sampledPoints_debug;
+      //产生轨迹？
       m_Planner.GenerateRunoffTrajectory(m_GlobalPathSections, m_CurrentPos,
                 m_PlanningParams.enableLaneChange,
                 m_VehicleStatus.speed,

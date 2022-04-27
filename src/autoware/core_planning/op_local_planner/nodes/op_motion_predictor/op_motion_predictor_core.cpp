@@ -101,9 +101,7 @@ void MotionPrediction::UpdatePlanningParams(ros::NodeHandle& _nh)
   _nh.getParam("/op_common_params/maxVelocity", m_PlanningParams.maxSpeed);
   _nh.getParam("/op_common_params/minVelocity", m_PlanningParams.minSpeed);
   _nh.getParam("/op_common_params/maxLocalPlanDistance", m_PlanningParams.microPlanDistance);
-
-
-  _nh.getParam("/op_common_params/pathDensity", m_PlanningParams.pathDensity);
+Swervnsity", m_PlanningParams.pathDensity);
   _nh.getParam("/op_common_params/rollOutDensity", m_PlanningParams.rollOutDensity);
   if(m_PlanningParams.enableSwerving)
     _nh.getParam("/op_common_params/rollOutsNumber", m_PlanningParams.rollOutNumber);

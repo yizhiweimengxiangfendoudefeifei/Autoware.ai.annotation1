@@ -60,11 +60,10 @@ double PurePursuit::calcCurvature(geometry_msgs::Point target) const
   return kappa;
 }
 
-// linear interpolation of next target线性插值函数
+// linear interpolation of next target
 bool PurePursuit::interpolateNextTarget(
   int next_waypoint, geometry_msgs::Point* next_target) const
 {
-  //设定参考误差
   constexpr double ERROR = pow(10, -5);  // 0.00001
 
   int path_size = static_cast<int>(current_waypoints_.size());
@@ -114,7 +113,7 @@ bool PurePursuit::interpolateNextTarget(
   // normal unit vectors of v
   // rotate to counter clockwise 90 degree
   tf::Vector3 unit_w1 = rotateUnitVector(unit_v, 90);
-  // rotate to clockwise 90 degree
+  // rotate to counter clockwise 90 degree
   tf::Vector3 unit_w2 = rotateUnitVector(unit_v, -90);
 
   // the foot of a perpendicular line
@@ -175,7 +174,7 @@ bool PurePursuit::interpolateNextTarget(
     // ROS_INFO("target2 : ( %lf , %lf , %lf)", target2.x, target2.y, target2.z);
     // displayLinePoint(a, b, c, target1, target2, h);  // debug tool
 
-    // check intersection is between end and start选择靠前的点
+    // check intersection is between end and start
     double interval = getPlaneDistance(end, start);
     if (getPlaneDistance(target1, end) < interval)
     {
@@ -197,10 +196,8 @@ bool PurePursuit::interpolateNextTarget(
   }
 }
 
-//寻找在路径中要跟踪的下一个目标点
 void PurePursuit::getNextWaypoint()
 {
-  //路径点的数量
   int path_size = static_cast<int>(current_waypoints_.size());
 
   // if waypoints are not given, do nothing.

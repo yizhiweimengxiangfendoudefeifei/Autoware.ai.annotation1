@@ -1,7 +1,7 @@
 <!-- -->
 <launch>
   <arg name="is_linear_interpolation" default="True"/>
-  <arg name="publishes_for_steering_robot" default="true"/>
+  <arg name="publishes_for_steering_robot" default="False"/>
   <arg name="add_virtual_end_waypoints" default="False"/>
   <arg name="const_lookahead_distance" default="4.0"/>
   <arg name="const_velocity" default="5.0"/>

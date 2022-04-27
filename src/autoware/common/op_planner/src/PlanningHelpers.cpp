@@ -1289,7 +1289,7 @@ void PlanningHelpers::FixAngleOnly(std::vector<WayPoint>& path)
 
 double PlanningHelpers::CalcAngleAndCost(vector<WayPoint>& path, const double& lastCost, const bool& bSmooth)
 {
-  if(path.size() < 2) return 0;
+  if(path.size() < 2) return 0;//路径数量小于2会退出？
   if(path.size() == 2)
   {
     path[0].pos.a = UtilityH::FixNegativeAngle(atan2(path[1].pos.y - path[0].pos.y, path[1].pos.x - path[0].pos.x ));
@@ -1386,6 +1386,7 @@ void PlanningHelpers::ExtractPartFromPointToDistance(const vector<WayPoint>& ori
     const double& pathDensity, vector<WayPoint>& extractedPath, const double& SmoothDataWeight, const double& SmoothWeight, const double& SmoothTolerance)
 {
   extractedPath.clear();
+  //计算最近点索引
   unsigned int close_index = GetClosestNextPointIndexDirectionFast(originalPath, pos);
 //  int i_slow = GetClosestNextPointIndexDirection(originalPath, pos);
 //  if(close_index != i_slow)

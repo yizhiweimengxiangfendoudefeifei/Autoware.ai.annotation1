@@ -22,7 +22,6 @@
 #include <geometry_msgs/TwistStamped.h>
 #include <ros/ros.h>
 #include <std_msgs/Float32.h>
-#include <std_msgs/Float64.h>
 #include <visualization_msgs/Marker.h>
 
 // User defined includes
@@ -74,7 +73,7 @@ private:
 
   // publisher
   ros::Publisher pub1_, pub2_,
-    pub11_, pub12_, pub13_, pub14_, pub15_, pub16_, pub17_, pub18_,controlPub_acc,controlPub_dec,controlPub_ste;
+    pub11_, pub12_, pub13_, pub14_, pub15_, pub16_, pub17_, pub18_;
 
   // subscriber
   ros::Subscriber sub1_, sub2_, sub3_, sub4_;

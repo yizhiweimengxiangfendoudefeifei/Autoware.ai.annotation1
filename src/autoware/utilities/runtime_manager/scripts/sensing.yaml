@@ -231,7 +231,7 @@ subs :
 
       - name : Robosense RS32
         desc : Launches the driver for the selected RoboSense LiDAR sensor and publishes the pointcloud in rslidar_points.
-        run  : roslaunch rslidar_pointcloud rs_cloud_nodelet_32.launch
+        run  : roslaunch rslidar_sdk start.launch
 
       - name : Robosense RS16
         desc : Launches the driver for the selected RoboSense LiDAR sensor and publishes the pointcloud in rslidar_points.

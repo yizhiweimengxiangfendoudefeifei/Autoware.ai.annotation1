@@ -1350,6 +1350,7 @@ void ROSHelpers::ConvertFromLocalLaneToAutowareLane(const std::vector<PlannerHNS
   }
 }
 
+//得到路径的消息存在path中
 void ROSHelpers::ConvertFromAutowareLaneToLocalLane(const autoware_msgs::Lane& trajectory, std::vector<PlannerHNS::WayPoint>& path)
 {
   path.clear();

@@ -33,9 +33,9 @@ AstarAvoid::AstarAvoid()
   private_nh_.param<double>("update_rate", update_rate_, 10.0);
 
   private_nh_.param<bool>("enable_avoidance", enable_avoidance_, true);
-  private_nh_.param<double>("avoid_waypoints_velocity", avoid_waypoints_velocity_, 10.0);
-  private_nh_.param<double>("avoid_start_velocity", avoid_start_velocity_, 14.4);//km/h
-  private_nh_.param<double>("replan_interval", replan_interval_, 2.0);
+  private_nh_.param<double>("avoid_waypoints_velocity", avoid_waypoints_velocity_, 4.0);
+  private_nh_.param<double>("avoid_start_velocity", avoid_start_velocity_, 1.0);//km/h
+  private_nh_.param<double>("replan_interval", replan_interval_, 0.5);
   private_nh_.param<int>("search_waypoints_size", search_waypoints_size_, 50);
   private_nh_.param<int>("search_waypoints_delta", search_waypoints_delta_, 2);
   private_nh_.param<int>("closest_search_size", closest_search_size_, 30);

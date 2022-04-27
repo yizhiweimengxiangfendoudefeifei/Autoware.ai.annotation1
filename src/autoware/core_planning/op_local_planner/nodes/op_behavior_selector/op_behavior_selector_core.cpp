@@ -409,6 +409,7 @@ void BehaviorGen::VisualizeLocalPlanner()
     iDirection = 1;
   else if(m_BehaviorGenerator.m_pCurrentBehaviorState->GetCalcParams()->iCurrSafeTrajectory < m_BehaviorGenerator.m_pCurrentBehaviorState->GetCalcParams()->iCentralTrajectory)
     iDirection = -1;
+  //rviz中可视化行为规划器
   PlannerHNS::ROSHelpers::VisualizeBehaviorState(m_CurrentPos, m_CurrentBehavior, !m_BehaviorGenerator.m_pCurrentBehaviorState->GetCalcParams()->bTrafficIsRed , iDirection, behavior_rviz, "beh_state");
   //pub_BehaviorStateRviz.publish(behavior_rviz);
 
@@ -442,6 +443,7 @@ void BehaviorGen::SendLocalPlanningTopics()
   t.angular.x = (int)m_CurrentBehavior.indicator;
   t.angular.y = (int)m_CurrentBehavior.state;
   t.angular.z = m_CurrentBehavior.iTrajectory;
+  //将行为状态赋值给behavior并发布出去
   behavior.twist = t;
   behavior.header.stamp = ros::Time::now();
   pub_BehaviorState.publish(behavior);
