@@ -49,6 +49,7 @@ vehicle_cmd包含所有的控制消息，包含四元数，线速度，加速度
 19.有关停车的命令
 要将pure_pusuit设置为跟踪路径点的速度，velocity_set中设置为points_raw
 20.velocity_Set启动的是velocity_set_option.launch
+21.my_detection.launch 中points_node节点为points_no_ground
 
 安装autoware 1.14的教程：
 https://www.cnblogs.com/hgl0417/p/14617025.html
