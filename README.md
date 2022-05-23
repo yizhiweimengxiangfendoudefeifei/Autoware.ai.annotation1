@@ -73,6 +73,6 @@ https://zhuanlan.zhihu.com/p/163844578
 https://blog.csdn.net/xiaoxiao123jun/article/details/111089307  
 关于适配速腾激光雷达：  
 https://blog.csdn.net/yz2630570484/article/details/114232333  
-关于融合：  
-https://blog.csdn.net/muyiyushan/article/details/119760428  
+关于融合：   
+https://blog.csdn.net/qq_40252459/article/details/124330607
 
